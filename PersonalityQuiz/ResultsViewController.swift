@@ -1,7 +1,3 @@
-//
-//  ResultsViewController.swift
-//  PersonalityQuiz
-//
 //  Created by Oleh Haistruk on 4/3/19.
 //  Copyright © 2019 Oleh Haistruk. All rights reserved.
 //
