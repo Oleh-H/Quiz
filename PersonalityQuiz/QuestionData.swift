@@ -1,7 +1,3 @@
-//
-//  QuestionData.swift
-//  PersonalityQuiz
-//
 //  Created by Oleh Haistruk on 4/4/19.
 //  Copyright © 2019 Oleh Haistruk. All rights reserved.
 //
