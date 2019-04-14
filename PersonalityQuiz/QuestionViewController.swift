@@ -213,14 +213,5 @@ class QuestionViewController: UIViewController {
             Answer(text: "Меня меньше занимают вопросы секса, чем раньше.", type: .lightDepression),
             Answer(text: "Сейчас я значительно меньше интересуюсь сексуальными вопросами, чем раньше.", type: .mediumDepression),
             Answer(text: "Я полностью утратил сексуальный интерес.", type: .hardDepression)])]
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
