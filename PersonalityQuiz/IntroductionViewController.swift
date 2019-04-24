@@ -1,7 +1,3 @@
-//
-//  ViewController.swift
-//  PersonalityQuiz
-//
 //  Created by Oleh Haistruk on 3/26/19.
 //  Copyright © 2019 Oleh Haistruk. All rights reserved.
 //
