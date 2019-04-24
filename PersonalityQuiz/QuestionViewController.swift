@@ -51,7 +51,7 @@ class QuestionViewController: UIViewController {
         verticalStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 70).isActive = true
         
         
-        questionProgressView = UIProgressView(frame: CGRect(origin: CGPoint.init(), size: CGSize.init(width: 20, height: 50)))
+        questionProgressView = UIProgressView(frame: CGRect(origin: CGPoint.init(), size: CGSize.init(width: 10, height: 10)))
     }
     
     
@@ -126,7 +126,8 @@ class QuestionViewController: UIViewController {
     }
     //labels set text
     func addAnswrsToTheStack(using answers: [Answer]){
-        verticalStackView.addArrangedSubview(questionProgressView)
+        createHorizontalStackView()
+        horizontalStackView.addArrangedSubview(questionProgressView)
         
      for answer in answers {
         createHorizontalStackView()
@@ -149,7 +150,6 @@ class QuestionViewController: UIViewController {
         nextButton.setTitleColor(#colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1), for: .normal)
         nextButton.addTarget(self, action: #selector(nextQuestion), for: .touchUpInside)
         verticalStackView.addArrangedSubview(nextButton)
-        print(verticalStackView.arrangedSubviews)
     }
 /*        question1Label.text = answers[0].text
         question2Label.text = answers[1].text
