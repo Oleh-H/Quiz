@@ -51,7 +51,7 @@ class QuestionViewController: UIViewController {
         verticalStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 70).isActive = true
         
         
-        questionProgressView = UIProgressView(frame: CGRect(origin: CGPoint.init(), size: CGSize.init(width: 10, height: 10)))
+        questionProgressView = UIProgressView(frame: CGRect(origin: CGPoint.init(), size: CGSize.init()))
     }
     
     
@@ -146,7 +146,7 @@ class QuestionViewController: UIViewController {
         
         //Button added
         let nextButton: UIButton = UIButton()
-        nextButton.setTitle("Наступне питання", for: .normal)
+        nextButton.setTitle("Следующий вопрос", for: .normal)
         nextButton.setTitleColor(#colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1), for: .normal)
         nextButton.addTarget(self, action: #selector(nextQuestion), for: .touchUpInside)
         verticalStackView.addArrangedSubview(nextButton)
