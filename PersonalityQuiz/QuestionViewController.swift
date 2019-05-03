@@ -5,23 +5,10 @@ import UIKit
 
 class QuestionViewController: UIViewController {
     
-/*    @IBOutlet weak var multipleStackView: UIStackView!
-    @IBOutlet weak var question1Label: UILabel!
-    @IBOutlet weak var question2Label: UILabel!
-    @IBOutlet weak var question3Label: UILabel!
-    @IBOutlet weak var question4Label: UILabel!
-    
-    @IBOutlet weak var switch1: UISwitch!
-    @IBOutlet weak var switch2: UISwitch!
-    @IBOutlet weak var switch3: UISwitch!
-    @IBOutlet weak var switch4: UISwitch!
-  */
-    
-   // @IBOutlet weak var questionProgressView: UIProgressView!
-    
     var verticalStackView: UIStackView!
     var horizontalStackView: UIStackView!
     var questionProgressView: UIProgressView!
+    let nextButton = UIButton()
     
     
     var questionIndex: Int = 0 //question index number
@@ -40,14 +27,14 @@ class QuestionViewController: UIViewController {
         verticalStackView.distribution = .fillProportionally
         verticalStackView.axis = .vertical
         verticalStackView.alignment = .center
-        verticalStackView.spacing = 8
+        verticalStackView.spacing = 5
         verticalStackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(verticalStackView)
         //erticalStackView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 100)
         
         verticalStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
         verticalStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
-        verticalStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10).isActive = true
+        verticalStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -5).isActive = true
         verticalStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 70).isActive = true
         
         
@@ -60,7 +47,7 @@ class QuestionViewController: UIViewController {
         horizontalStackView.axis = .horizontal
         horizontalStackView.alignment = .center
         horizontalStackView.distribution = .equalSpacing
-        horizontalStackView.spacing = 10
+        horizontalStackView.spacing = 0
         verticalStackView.addArrangedSubview(horizontalStackView)
         
         horizontalStackView.trailingAnchor.constraint(equalTo: verticalStackView.trailingAnchor, constant: 0).isActive = true
@@ -70,35 +57,6 @@ class QuestionViewController: UIViewController {
    //     createQuestionLabels()
     }
     
-    
-    
-/*    func createQuestionLabels() {
-     
-        label.numberOfLines = 0
-        label.lineBreakMode = .byWordWrapping
-        label.textAlignment = .left
-        label.text = "123"
-        horizontalStackView.addArrangedSubview(label)
-     
-     let questionSwitch: UISwitch = UISwitch()
-        questionSwitch.isOn = false
-        horizontalStackView.addArrangedSubview(questionSwitch)
-     
-        
-        let label2: UILabel = UILabel()
-        label2.numberOfLines = 0
-        label2.lineBreakMode = .byWordWrapping
-        label2.textAlignment = .left
-        label2.text = "I'm a test label2 hello hello hello hello END"
-        verticalStackView.addArrangedSubview(label2)
-        
-        let label3: UILabel = UILabel()
-        label3.numberOfLines = 0
-        label3.text = "I made it! I add labels to stacKView and add constraints"
-        label3.textColor = .red
-        verticalStackView.addArrangedSubview(label3)
-    }
-*/
     func updateUI(){
         navigationItem.title = questions[questionIndex].text
         
@@ -119,50 +77,57 @@ class QuestionViewController: UIViewController {
     
     
     func deleteAnswersFromTheStack(using answers: [Answer]) {
-        for item in verticalStackView.arrangedSubviews {
+        
+        for item in verticalStackView.subviews {
             verticalStackView.removeArrangedSubview(item)
             item.removeFromSuperview()
         }
+    }
+    
+    @objc func switchChanged(_ mySwitch: UISwitch) {
+        //let value = mySwitch.isOn
+        //print(mySwitch.tag , value)
+        answerChosen.append(mySwitch.tag)
+        mySwitch.isEnabled = false
+        nextButton.isEnabled = true
+        nextButton.setTitleColor(#colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1), for: .normal)
     }
     //labels set text
     func addAnswrsToTheStack(using answers: [Answer]){
         createHorizontalStackView()
         horizontalStackView.addArrangedSubview(questionProgressView)
+     
+        var questionSwitch: UISwitch!
         
-     for answer in answers {
+        
+        
+     for (index, answer) in answers.enumerated() {
         createHorizontalStackView()
         let label: UILabel = UILabel()
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         label.textAlignment = .left
+        label.font = .systemFont(ofSize: 15)
         label.text = answer.text
         
         horizontalStackView.addArrangedSubview(label)
         
-        let questionSwitch: UISwitch = UISwitch()
+        questionSwitch = UISwitch()
+        questionSwitch.tag = index
         questionSwitch.isOn = false
+        questionSwitch.addTarget(self, action: #selector(switchChanged), for:.valueChanged)
         horizontalStackView.addArrangedSubview(questionSwitch)
         }
         
         //Button added
-        let nextButton: UIButton = UIButton()
+        
         nextButton.setTitle("Следующий вопрос", for: .normal)
-        nextButton.setTitleColor(#colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1), for: .normal)
+        nextButton.isEnabled = false
+        nextButton.setTitleColor(#colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1), for: .disabled)
         nextButton.addTarget(self, action: #selector(nextQuestion), for: .touchUpInside)
         verticalStackView.addArrangedSubview(nextButton)
     }
-/*        question1Label.text = answers[0].text
-        question2Label.text = answers[1].text
-        question3Label.text = answers[2].text
-        question4Label.text = answers[3].text
-        switch1.isOn = false
-        switch2.isOn = false
-        switch3.isOn = false
-        switch4.isOn = false
-     
-     
-    }
-*/
+
   @objc  func nextQuestion() {
         questionIndex += 1
         
@@ -179,25 +144,6 @@ class QuestionViewController: UIViewController {
             resultsViewControler.responses = answerChosen
         }
     }
-    
-    //next question button pressed. anwer recorded to the array
-/*    @IBAction func answerButtonPressed() {
-        if switch1.isOn {
-            answerChosen.append(0)
-        }
-        if switch2.isOn {
-            answerChosen.append(1)
-        }
-        if switch3.isOn {
-            answerChosen.append(2)
-        }
-        if switch4.isOn {
-            answerChosen.append(3)
-        }
-        
-        nextQuestion()
-    }
-*/
     
     var questions: [Question] = [
         Question(text: "Настроение", answers: [
@@ -280,8 +226,8 @@ class QuestionViewController: UIViewController {
     
         Question(text: "Образ тела", answers: [
             Answer(text: "Я не чувствую, что выгляжу хуже, чем обычно.", type: .depressionSymptomesAbsent),
-            Answer(text: "Меня тревожит, что я выгляжу старым и непривлекательным.", type: .lightDepression),
-            Answer(text: "Я знаю, что в моей внешности произошли существенные изменения, делающие меня непривлекательным.", type: .mediumDepression),
+            Answer(text: "Меня тревожит, что я выгляжу старым и непривлекательным", type: .lightDepression),
+            Answer(text: "Я знаю, что в моей внешности произошли существенные изменения, делающие меня непривлекательным", type: .mediumDepression),
             Answer(text: "Я знаю, что выгляжу безобразно.", type: .hardDepression)]),
     
         Question(text: "Утрата работоспособности", answers: [
