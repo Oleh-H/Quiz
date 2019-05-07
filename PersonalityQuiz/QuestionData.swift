@@ -11,23 +11,5 @@ struct Question {
 
 struct Answer {
     var text: String
-    var type: MoodType
-}
-
-enum MoodType: String {
-    case depressionSymptomesAbsent = "😀", lightDepression = "🙂", mediumDepression = "🙁", severeDepression = "☹️", hardDepression = "😩"
-    var definition: String {
-        switch self {
-        case .depressionSymptomesAbsent:
-            return "Відсутність депресивних симптомів."
-        case .lightDepression:
-            return "Легка депресія (Субдипресія)."
-        case .mediumDepression:
-            return "Помірна дипресія."
-        case .severeDepression:
-            return "Виражена дипресія (Середньої тяжкості)."
-        case .hardDepression:
-            return "Тяжка дипресія."
-        }
-    }
+    //var type: MoodType
 }
