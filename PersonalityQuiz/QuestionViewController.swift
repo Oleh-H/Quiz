@@ -83,9 +83,7 @@ class QuestionViewController: UIViewController {
         }
     
             @objc func switchChanged(_ mySwitch: UISwitch) {
-                //let value = mySwitch.isOn
-                //print(mySwitch.tag , value)
-                answerChosen.append(mySwitch.tag)
+                answerChosen.append(mySwitch.tag) //add point for the question from 0 to 3 = index
                 mySwitch.isEnabled = false
                 nextButton.isEnabled = true
                 nextButton.setTitleColor(#colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1), for: .normal)

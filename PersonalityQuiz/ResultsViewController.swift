@@ -36,7 +36,7 @@ class ResultsViewController: UIViewController {
         case 20...29:
             answerHeadLabel.text = "☹️"
             resultsDescriptionLabel.text = "У вас выраженная депрессия (средней тяжести)"
-        case 30...63:
+        case 30...126: //63 is max number for 1 selected question and 126 for all switches selected for all answers
             answerHeadLabel.text = "😩"
             resultsDescriptionLabel.text = "У вас тяжелая депрессия. Вам Нужна помощь!"
         default:
