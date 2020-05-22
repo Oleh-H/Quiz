@@ -1,2 +1,2 @@
 # Quiz
-Made for MacPow internship in 2019.
+Made for MacPaw internship in 2019.
